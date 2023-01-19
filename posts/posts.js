@@ -1,4 +1,35 @@
 /* Posts Page JavaScript */
+// Assume this data comes from a server-side API
+const postData = {
+    author: 'John Doe',
+    timestamp: 'Jan 1, 2021',
+    content: 'Hello, world!',
+    image: 'https://example.com/image.jpg',
+    avatar: 'https://example.com/avatar.jpg',
+}
+
+// Get the elements by their ID
+const postAvatar = document.getElementById('post-avatar');
+const postAuthor = document.getElementById('post-author');
+const postTimestamp = document.getElementById('post-timestamp');
+const postContent = document.getElementById('post-content');
+const postImage = document.getElementById('post-image');
+const postActionButton = document.getElementById('post-action-button');
+
+// Set the elements' content
+postAvatar.src = postData.avatar;
+postAuthor.textContent = postData.author;
+postTimestamp.textContent = postData.timestamp;
+postContent.textContent = postData.content;
+postImage.src = postData.image;
+
+postActionButton.addEventListener("click", handleLike);
+
+function handleLike(event) {
+    event.preventDefault();
+    console.log("like clicked");
+    // handle the like event here
+}
 
 "use strict";
 
@@ -23,11 +54,15 @@ function DisplayAllPost() {
   //This code is making a fetch request to the specified url with the given requestOptions.
   
   fetch(
-    "https://microbloglite.herokuapp.com/api/posts?limit=2000&offset=0",
+    "https://microbloglite.herokuapp.com/api/posts?limit=200&offset=0",
     requestOptions
   )
     .then((response) => response.json())
-    .then((result) => document.getElementById("post").innerHTML = result.map(postTemplate).join(" "))
+    .then((result) => {
+      result.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+      document.getElementById("post").innerHTML = result.map(postTemplate).join(" ")
+  
+  })
 
 //post template section for the card including name, text and when its created
 
@@ -36,7 +71,9 @@ DisplayAllPost();
 
 function postTemplate(post) {
   return `<div class="card">
-<div> 
+
+<div class="card-content">
+
 <h3 class="card-title">${post.username}</h3>
 </div>
 <p class="card-description">${post.text}</p>

@@ -69,7 +69,7 @@ function ProfileFilter() {
             ${result[i].text}
           </div>
         </div>`;
-        element.innerHTML += userPostInfo;
+        element.innerHTML += userPostInfo; 
       }
     })
     .catch((error) => console.log(error));

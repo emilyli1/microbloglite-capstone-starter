@@ -1,4 +1,4 @@
-/* nav bar */
+/* Nav Bar */
 nav {
 	display: flex;
 	align-items: center;
@@ -19,17 +19,16 @@ nav {
 	text-decoration: none;
 	font-weight: bold;
   }
-  .logoutbtn {
-	background-color: Transparent;
-    background-repeat:no-repeat;
-	margin: none;
-	padding: none;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;
+  nav ul #logoutButton {
+	background-color: white;
+	margin-right: 5px;
+	background: none;
+	padding: 0%;
+	border: none;
 	color: white;
 	font-weight: bold;
   }
+  
   a {
 	color: rgb(10, 148, 203);
   }
@@ -69,9 +68,10 @@ input[type=text] {
 
 /* Post cards */ 
 .card {
-	width: 600px;
+	width: 550px;
 	border-color: black;
 	margin-top: 15px;
+	
 }
 
 .card-header {
@@ -83,4 +83,11 @@ input[type=text] {
 .container {
 	display: flex;
 	justify-content: center;
+
+}
+.post-container {
+	width: 600px;
+    margin: 0 auto;
+
+    border: 1px solid #ccc;
 }

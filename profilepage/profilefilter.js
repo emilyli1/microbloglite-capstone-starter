@@ -19,9 +19,10 @@ function CreatePost() {
   };
 
   fetch("https://microbloglite.herokuapp.com/api/posts", requestOptions)
-    .then((response) => response.text())
-    .then((result) => console.log(result))
-    .catch((error) => console.log("error", error));
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+  document.getElementById("capturePost").value = " ";
 }
 
 
@@ -45,7 +46,7 @@ function ProfileFilter() {
   };
   // The fetch post only finds the posts from the username that is logged in. This is the filter
   fetch(
-    "https://microbloglite.herokuapp.com/api/posts?limit=200&offset=0&username=" + usernameEndPoint,
+    "https://microbloglite.herokuapp.com/api/posts?limit=500&offset=0&username=" + usernameEndPoint,
     requestOptions
   )
     .then((response) => {
@@ -63,7 +64,7 @@ function ProfileFilter() {
         let userPostInfo = `
         <div class="card">
           <div class="card-header">
-            ${result[i]._id} @${result[i].username}<br> ${result[i].createdAt}
+           @${result[i].username}<br> ${result[i].createdAt}
           </div>
           <div class="card-body">
             ${result[i].text}
